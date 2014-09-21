@@ -1,0 +1,49 @@
+body {
+  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #a5ddff;
+  padding: 1em;
+}
+  .brand {
+    color: #fff;
+    font-size: 2em;
+    margin: 0;
+  }
+
+.main {
+  padding-bottom: 2em;
+  padding-top: 2em;
+  text-align: center;
+}
+  .main a {
+    color: #248cc8;
+  }
+    .main a:hover {
+      color: #f47e3c;
+    }
+
+footer {
+  background-color: #2f3033;
+  padding: 1em;
+}
+  .disclaimer {
+    color: #ccc;
+    font-size: 0.75em;
+    text-align: right;
+  }
+
+  footer a {
+    background-color: #36a0e0;
+    color: #fff;
+    padding: 2px 5px;
+    text-decoration: none;
+  }
+    footer a:hover {
+      background: #4886ac;
+      color: #bbb;
+    }
