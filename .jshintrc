@@ -1,0 +1,16 @@
+{
+  "-W097": true,
+  "boss": true,
+  "browser": true,
+  "curly": true,
+  "devel": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "immed": true,
+  "latedef": true,
+  "loopfunc": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true
+}
