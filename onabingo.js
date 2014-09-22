@@ -68,6 +68,11 @@ BingoSpace = Backbone.Model.extend({
     }
   },
   toggleSpace: function() {
+    /**
+      * Toggles whether this space is selected, unless it happens to be the
+      * free space.
+      */
+
     if ( this.get( 'word' ) === 'Free space' ) {
       this.set( 'selected', true );
       return;
@@ -86,6 +91,10 @@ BingoCard = Backbone.Collection.extend({
     this.on( 'reset', this.arrangeRows, this );
   },
   arrangeRows: function() {
+    /**
+      * Stores the card's spaces in a 2D array for convenience.
+      */
+
     var byRow = [],
       cardHeight = this.cardHeight,
       cardWidth = this.cardWidth;
@@ -141,6 +150,10 @@ BingoSpaceView = Backbone.View.extend({
     return this;
   },
   toggleSpace: function() {
+    /**
+      * Tell the model to toggle its current state.
+      */
+
     this.model.toggleSpace();
   }
 });
