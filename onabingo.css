@@ -27,6 +27,26 @@ header {
       color: #f47e3c;
     }
 
+.bingo-card {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+  .bingo-space {
+    background-color: #ddd;
+    cursor: pointer;
+    padding: 1em;
+    width: 20%;
+  }
+    .bingo-space:hover {
+      background-color: #bbb;
+      color: #f47e3c;
+    }
+    .bingo-space.selected {
+      background-color: #eee;
+      color: #f47e3c;
+    }
+
 footer {
   background-color: #2f3033;
   padding: 1em;
