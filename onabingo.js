@@ -58,7 +58,24 @@ config.wordList = [
 var BingoCard,
   BingoSpace;
 
-BingoSpace = Backbone.Model.extend({});
+BingoSpace = Backbone.Model.extend({
+  defaults: {
+    selected: false
+  },
+  initialize: function( attributes ) {
+    if ( attributes.word === 'Free space' ) {
+      this.set( 'selected', true );
+    }
+  },
+  toggleSpace: function() {
+    if ( this.get( 'word' ) === 'Free space' ) {
+      this.set( 'selected', true );
+      return;
+    }
+
+    this.set( 'selected', !this.get( 'selected' ) );
+  }
+});
 
 BingoCard = Backbone.Collection.extend({
   model: BingoSpace,
@@ -98,6 +115,12 @@ var BingoCardView,
 BingoSpaceView = Backbone.View.extend({
   tagName: 'td',
   className: 'bingo-space',
+  events: {
+    'click': 'toggleSpace'
+  },
+  initialize: function( options ) {
+    this.listenTo( this.model, 'change', this.render );
+  },
   render: function() {
     /**
       * Renders the current view.
@@ -113,7 +136,12 @@ BingoSpaceView = Backbone.View.extend({
       this.$el.text( this.model.get( 'word' ) );
     }
 
+    this.$el.toggleClass( 'selected', this.model.get( 'selected' ) );
+
     return this;
+  },
+  toggleSpace: function() {
+    this.model.toggleSpace();
   }
 });
 
