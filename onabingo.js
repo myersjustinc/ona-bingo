@@ -363,19 +363,12 @@ $( window.document ).ready(function() {
     cardWidth: config.cardWidth
   });
   card.reset( words );
+
   cardView = new BingoCardView({
     collection: card,
     el: $( '.bingo-card' )
   });
-
   cardView.render();
-
-  // TODO: Remove these debugging helpers.
-  window.card = card;
-  window.cardView = cardView;
-  card.on( 'win', function( winningWords ) {
-    log( winningWords );
-  });
 });
 
 
