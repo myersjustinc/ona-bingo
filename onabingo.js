@@ -298,6 +298,7 @@ BingoCardView = Backbone.View.extend({
   className: 'bingo-card',
   initialize: function( options ) {
     this.spaceViews = [];
+    this.listenTo( this.collection, 'reset', this.render );
   },
   render: function() {
     /**
@@ -354,21 +355,26 @@ $( window.document ).ready(function() {
     cardView,
     words;
 
-  words = getWords(
-    config.cardHeight * config.cardWidth,
-    config.wordList );
+  function newCard() {
+    words = getWords(
+      config.cardHeight * config.cardWidth,
+      config.wordList );
+    card.reset( words );
+  }
 
   card = new BingoCard( null, {
     cardHeight: config.cardHeight,
     cardWidth: config.cardWidth
   });
-  card.reset( words );
+  newCard();
 
   cardView = new BingoCardView({
     collection: card,
     el: $( '.bingo-card' )
   });
   cardView.render();
+
+  $( '.bingo-reset' ).on( 'click', newCard );
 });
 
 
