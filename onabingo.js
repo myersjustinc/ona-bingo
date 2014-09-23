@@ -298,6 +298,7 @@ BingoCardView = Backbone.View.extend({
   className: 'bingo-card',
   initialize: function( options ) {
     this.spaceViews = [];
+    this.listenTo( this.collection, 'reset', this.render );
   },
   render: function() {
     /**
@@ -352,23 +353,49 @@ BingoCardView = Backbone.View.extend({
 $( window.document ).ready(function() {
   var card,
     cardView,
+    winClass = 'bingo-win--won',
+    $winDialog = $( '.bingo-win' ),
     words;
 
-  words = getWords(
-    config.cardHeight * config.cardWidth,
-    config.wordList );
+  function newCard() {
+    words = getWords(
+      config.cardHeight * config.cardWidth,
+      config.wordList );
+    card.reset( words );
+    $winDialog.removeClass( winClass );
+  }
 
   card = new BingoCard( null, {
     cardHeight: config.cardHeight,
     cardWidth: config.cardWidth
   });
-  card.reset( words );
+  newCard();
 
   cardView = new BingoCardView({
     collection: card,
     el: $( '.bingo-card' )
   });
   cardView.render();
+
+  $( '.bingo-reset' ).on( 'click', newCard );
+  card.on( 'win', function( winningWords ) {
+    $winDialog.addClass( winClass );
+  });
+
+  $( '.bingo-tweet' ).on( 'click', function( event ) {
+    var session = $( '.bingo-session' ).val().trim();
+
+    if ( session ) {
+      session += ' ';
+    }
+
+    window.open(
+      ('http://twitter.com/share?text=' +
+      encodeURIComponent( 'Bingo! ' + session + '#ONA14 #ONAbingo' ) +
+      '&url=' + encodeURIComponent( window.location.href )),
+      'sharer', 'toolbar=0,status=0,width=626,height=436'
+    );
+  });
 });
 
 

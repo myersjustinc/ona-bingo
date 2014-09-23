@@ -16,9 +16,13 @@ header {
   }
 
 .main {
+  margin-left: auto;
+  margin-right: auto;
   padding-bottom: 2em;
   padding-top: 2em;
-  text-align: center;
+  position: relative;
+  text-align: right;
+  width: 50%;
 }
   .main a {
     color: #248cc8;
@@ -27,25 +31,74 @@ header {
       color: #f47e3c;
     }
 
-.bingo-card {
+.bingo-space {
+  background-color: #ddd;
+  cursor: pointer;
+  padding: 1em;
+  text-align: center;
+  width: 20%;
+}
+  .bingo-space:hover {
+    background-color: #bbb;
+    color: #f47e3c;
+  }
+  .bingo-space.selected {
+    background-color: #eee;
+    color: #f47e3c;
+  }
+
+.bingo-reset,
+.bingo-tweet {
+  background-color: #277ca3;
+  border: 0px none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 1em;
+  opacity: 0.5;
+  padding: 10px 1%;
+  text-align: center;
+}
+  .bingo-reset:hover,
+  .bingo-tweet:hover {
+    opacity: 1;
+  }
+
+.bingo-tweet {
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  margin-top: 0.5em;
 }
-  .bingo-space {
-    background-color: #ddd;
-    cursor: pointer;
-    padding: 1em;
-    width: 20%;
+
+.bingo-win {
+  background-color: #d4aadc;
+  border-radius: 1em;
+  border: 1px solid rgba(116, 116, 116, 0.2);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  display: none;
+  left: 1em;
+  padding: 1em;
+  position: absolute;
+  right: 1em;
+  text-align: left;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+  top: 3em;
+  z-index: 10;
+}
+  .bingo-win.bingo-win--won {
+    display: block;
   }
-    .bingo-space:hover {
-      background-color: #bbb;
-      color: #f47e3c;
-    }
-    .bingo-space.selected {
-      background-color: #eee;
-      color: #f47e3c;
-    }
+  .bingo-win h1 {
+    margin-top: 0;
+  }
+  .bingo-session {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #666;
+    margin-left: 1em;
+  }
 
 footer {
   background-color: #2f3033;
