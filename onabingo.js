@@ -46,7 +46,7 @@ config.wordList = [
   { word: 'Big Data' },
   { word: 'New revenue streams' },
   { word: 'Public interest' },
-  { word: '', withHyphens: [ 'Attri', 'bution' ]},
+  { word: 'Attribution', withHyphens: [ 'Attri', 'bution' ]},
   { word: 'Snow Fall' },
 ];
 
