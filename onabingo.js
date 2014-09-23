@@ -353,6 +353,8 @@ BingoCardView = Backbone.View.extend({
 $( window.document ).ready(function() {
   var card,
     cardView,
+    winClass = 'bingo-win--won',
+    $winDialog = $( '.bingo-win' ),
     words;
 
   function newCard() {
@@ -360,6 +362,7 @@ $( window.document ).ready(function() {
       config.cardHeight * config.cardWidth,
       config.wordList );
     card.reset( words );
+    $winDialog.removeClass( winClass );
   }
 
   card = new BingoCard( null, {
@@ -375,6 +378,9 @@ $( window.document ).ready(function() {
   cardView.render();
 
   $( '.bingo-reset' ).on( 'click', newCard );
+  card.on( 'win', function( winningWords ) {
+    $winDialog.addClass( winClass );
+  });
 });
 
 

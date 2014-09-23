@@ -20,6 +20,7 @@ header {
   margin-right: auto;
   padding-bottom: 2em;
   padding-top: 2em;
+  position: relative;
   text-align: right;
   width: 50%;
 }
@@ -60,6 +61,24 @@ header {
 }
   .bingo-reset:hover {
     opacity: 1;
+  }
+
+.bingo-win {
+  background-color: #fff;
+  border-radius: 1em;
+  border: 1px solid #aaa;
+  bottom: 3em;
+  display: none;
+  left: 1em;
+  padding: 1em;
+  position: absolute;
+  right: 1em;
+  text-align: left;
+  top: 3em;
+  z-index: 10;
+}
+  .bingo-win.bingo-win--won {
+    display: block;
   }
 
 footer {
