@@ -355,6 +355,7 @@ $( window.document ).ready(function() {
     cardView,
     winClass = 'bingo-win--won',
     $winDialog = $( '.bingo-win' ),
+    $winningWords = $( '.bingo-winning-words' ),
     words;
 
   function newCard() {
@@ -380,6 +381,7 @@ $( window.document ).ready(function() {
   $( '.bingo-reset' ).on( 'click', newCard );
   card.on( 'win', function( winningWords ) {
     $winDialog.addClass( winClass );
+    $winningWords.val( winningWords.join( ', ' ) );
   });
 
   $( '.bingo-tweet' ).on( 'click', function( event ) {
@@ -391,7 +393,9 @@ $( window.document ).ready(function() {
 
     window.open(
       ('http://twitter.com/share?text=' +
-      encodeURIComponent( 'Bingo! ' + session + '#ONA14 #ONAbingo' ) +
+      encodeURIComponent(
+        'Bingo! (' + $winningWords.val() + ') ' + session +
+        '#ONA14 #ONAbingo' ) +
       '&url=' + encodeURIComponent( window.location.href )),
       'sharer', 'toolbar=0,status=0,width=626,height=436'
     );
