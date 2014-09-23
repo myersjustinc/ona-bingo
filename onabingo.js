@@ -381,6 +381,21 @@ $( window.document ).ready(function() {
   card.on( 'win', function( winningWords ) {
     $winDialog.addClass( winClass );
   });
+
+  $( '.bingo-tweet' ).on( 'click', function( event ) {
+    var session = $( '.bingo-session' ).val().trim();
+
+    if ( session ) {
+      session += ' ';
+    }
+
+    window.open(
+      ('http://twitter.com/share?text=' +
+      encodeURIComponent( 'Bingo! ' + session + '#ONA14 #ONAbingo' ) +
+      '&url=' + encodeURIComponent( window.location.href )),
+      'sharer', 'toolbar=0,status=0,width=626,height=436'
+    );
+  });
 });
 
 
