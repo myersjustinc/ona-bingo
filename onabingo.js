@@ -136,6 +136,12 @@ BingoCard = Backbone.Collection.extend({
       return true;
     }
 
+    nextResult = this.checkColumns();
+    if ( nextResult ) {
+      this.trigger( 'win', nextResult );
+      return true;
+    }
+
     return false;
   },
   checkDiagonals: function() {
@@ -202,6 +208,38 @@ BingoCard = Backbone.Collection.extend({
       }, this );
       if ( rowPasses ) {
         return _.map( byRow[ rowIndex ], function( model ) {
+          return model.get( 'word' );
+        }, this );
+      }
+    }
+
+    return null;
+  },
+  checkColumns: function() {
+    /**
+      * Check the column of the board for a win condition.
+      *
+      * Returns the array of the winning words if appropriate.
+      *
+      * @returns {array|null}
+      */
+
+    var byRow = this.byRow,
+      cardHeight = this.cardHeight,
+      cardWidth = this.cardWidth,
+      column,
+      columnIndex,
+      columnPasses;
+
+    for ( columnIndex = 0; columnIndex < cardWidth ; columnIndex++ ) {
+      column = _.map( _.range( cardHeight ), function( rowIndex ) {
+        return byRow[ rowIndex ][ columnIndex ];
+      }, this );
+      columnPasses = _.all( column, function( model ) {
+        return model.get( 'selected' );
+      }, this );
+      if ( columnPasses ) {
+        return _.map( column, function( model ) {
           return model.get( 'word' );
         }, this );
       }
