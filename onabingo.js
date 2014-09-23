@@ -46,7 +46,7 @@ config.wordList = [
   { word: 'Big Data' },
   { word: 'New revenue streams' },
   { word: 'Public interest' },
-  { word: '', withHyphens: [ 'Attri', 'bution' ]},
+  { word: 'Attribution', withHyphens: [ 'Attri', 'bution' ]},
   { word: 'Snow Fall' },
 ];
 
@@ -89,6 +89,7 @@ BingoCard = Backbone.Collection.extend({
     this.cardWidth = options.cardWidth;
 
     this.on( 'reset', this.arrangeRows, this );
+    this.on( 'change:selected', this.checkForWin, this );
   },
   arrangeRows: function() {
     /**
@@ -111,6 +112,140 @@ BingoCard = Backbone.Collection.extend({
     }, this );
 
     this.byRow = byRow;
+  },
+  checkForWin: function() {
+    /**
+      * Check whether the user has won the game.
+      *
+      * Emits the 'win' event with the winning words when appropriate.
+      *
+      * @returns {boolean}
+      */
+
+    var nextResult;
+
+    nextResult = this.checkDiagonals();
+    if ( nextResult ) {
+      this.trigger( 'win', nextResult );
+      return true;
+    }
+
+    nextResult = this.checkRows();
+    if ( nextResult ) {
+      this.trigger( 'win', nextResult );
+      return true;
+    }
+
+    nextResult = this.checkColumns();
+    if ( nextResult ) {
+      this.trigger( 'win', nextResult );
+      return true;
+    }
+
+    return false;
+  },
+  checkDiagonals: function() {
+    /**
+      * Check the two diagonals of the board for a win condition.
+      *
+      * Returns the array of the winning words if appropriate.
+      *
+      * @returns {array|null}
+      */
+
+    var byRow = this.byRow,
+      northeast,
+      northeastPasses,
+      shortestAxisLength = _.min([ this.cardHeight, this.cardWidth ]),
+      southeast,
+      southeastPasses;
+
+    // Check the northwest-to-southeast diagonal.
+    southeast = _.map( _.range( shortestAxisLength ), function( index ) {
+      return byRow[ index ][ index ];
+    }, this );
+    southeastPasses = _.all( southeast, function( model ) {
+      return model.get( 'selected' );
+    }, this );
+    if ( southeastPasses ) {
+      return _.map( southeast, function( model ) {
+        return model.get( 'word' );
+      }, this );
+    }
+
+    // Check the southwest-to-northeast diagonal.
+    northeast = _.map( _.range( shortestAxisLength ), function( index ) {
+      return byRow[ this.cardHeight - index - 1 ][ index ];
+    }, this );
+    northeastPasses = _.all( northeast, function( model ) {
+      return model.get( 'selected' );
+    }, this );
+    if ( northeastPasses ) {
+      return _.map( northeast, function( model ) {
+        return model.get( 'word' );
+      }, this );
+    }
+
+    return null;
+  },
+  checkRows: function() {
+    /**
+      * Check the rows of the board for a win condition.
+      *
+      * Returns the array of the winning words if appropriate.
+      *
+      * @returns {array|null}
+      */
+
+    var byRow = this.byRow,
+      cardHeight = this.cardHeight,
+      rowIndex,
+      rowPasses;
+
+    for ( rowIndex = 0; rowIndex < cardHeight; rowIndex++ ) {
+      rowPasses = _.all( byRow[ rowIndex ], function( model ) {
+        return model.get( 'selected' );
+      }, this );
+      if ( rowPasses ) {
+        return _.map( byRow[ rowIndex ], function( model ) {
+          return model.get( 'word' );
+        }, this );
+      }
+    }
+
+    return null;
+  },
+  checkColumns: function() {
+    /**
+      * Check the column of the board for a win condition.
+      *
+      * Returns the array of the winning words if appropriate.
+      *
+      * @returns {array|null}
+      */
+
+    var byRow = this.byRow,
+      cardHeight = this.cardHeight,
+      cardWidth = this.cardWidth,
+      column,
+      columnIndex,
+      columnPasses;
+
+    for ( columnIndex = 0; columnIndex < cardWidth ; columnIndex++ ) {
+      column = _.map( _.range( cardHeight ), function( rowIndex ) {
+        return byRow[ rowIndex ][ columnIndex ];
+      }, this );
+      columnPasses = _.all( column, function( model ) {
+        return model.get( 'selected' );
+      }, this );
+      if ( columnPasses ) {
+        return _.map( column, function( model ) {
+          return model.get( 'word' );
+        }, this );
+      }
+    }
+
+    return null;
   }
 });
 
@@ -235,8 +370,12 @@ $( window.document ).ready(function() {
 
   cardView.render();
 
+  // TODO: Remove these debugging helpers.
   window.card = card;
   window.cardView = cardView;
+  card.on( 'win', function( winningWords ) {
+    log( winningWords );
+  });
 });
 
 
