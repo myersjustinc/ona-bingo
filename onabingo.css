@@ -138,6 +138,16 @@ header {
     border-bottom: 2px solid #666;
     margin-left: 1em;
   }
+  .bingo-win__prompts {
+    text-align: center;
+  }
+  .bingo-win__prompts button {
+    display: inline-block;
+    margin-right: 2em;
+  }
+    .bingo-win__prompts button:last-of-type {
+      margin-right: auto;
+    }
 
 footer {
   background-color: #2f3033;
