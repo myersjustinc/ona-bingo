@@ -366,6 +366,13 @@ $( window.document ).ready(function() {
     $winDialog.removeClass( winClass );
   }
 
+  function openWinDialog() {
+    $winDialog.addClass( winClass );
+  }
+  function closeWinDialog() {
+    $winDialog.removeClass( winClass );
+  }
+
   card = new BingoCard( null, {
     cardHeight: config.cardHeight,
     cardWidth: config.cardWidth
@@ -380,7 +387,7 @@ $( window.document ).ready(function() {
 
   $( '.bingo-reset' ).on( 'click', newCard );
   card.on( 'win', function( winningWords ) {
-    $winDialog.addClass( winClass );
+    openWinDialog();
     $winningWords.val( winningWords.join( ', ' ) );
   });
 
@@ -399,6 +406,10 @@ $( window.document ).ready(function() {
       '&url=' + encodeURIComponent( window.location.href )),
       'sharer', 'toolbar=0,status=0,width=626,height=436'
     );
+  });
+
+  $( '.bingo-win__close' ).on( 'click', function( event ) {
+    closeWinDialog();
   });
 });
 

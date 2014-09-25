@@ -90,6 +90,20 @@ header {
   .bingo-win.bingo-win--won {
     display: block;
   }
+  .bingo-win__close {
+    background-color: transparent;
+    border: 0;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.75em;
+    padding: 0.5em;
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+  }
+    .bingo-win__close:hover {
+      color: #333;
+    }
   .bingo-win h1 {
     margin-top: 0;
   }
