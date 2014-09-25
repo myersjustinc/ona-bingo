@@ -22,8 +22,19 @@ header {
   padding-top: 2em;
   position: relative;
   text-align: right;
+  transition: width 0.5s;
   width: 50%;
 }
+  @media screen and (max-width: 1000px) {
+    .main {
+      width: 75%;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .main {
+      width: 100%;
+    }
+  }
   .main a {
     color: #248cc8;
   }
@@ -34,10 +45,24 @@ header {
 .bingo-space {
   background-color: #ddd;
   cursor: pointer;
+  font-size: 1em;
   padding: 1em;
   text-align: center;
+  transition: font-size 0.5s, padding 0.5s;
   width: 20%;
 }
+  @media screen and (max-width: 600px) {
+    .bingo-space {
+      font-size: 0.875em;
+      padding: 0.75em;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .bingo-space {
+      font-size: 0.75em;
+      padding: 0.5em;
+    }
+  }
   .bingo-space:hover {
     background-color: #bbb;
     color: #f47e3c;
