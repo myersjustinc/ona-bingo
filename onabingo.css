@@ -151,12 +151,31 @@ header {
 
 footer {
   background-color: #2f3033;
+  line-height: 2;
   padding: 1em;
+  text-align: right;
 }
-  .disclaimer {
+  footer p {
     color: #ccc;
+    display: inline;
     font-size: 0.75em;
-    text-align: right;
+  }
+    footer p:after {
+      border-right: 1px solid #666;
+      content: '';
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+      footer p:last-of-type:after {
+        content: none;
+      }
+  @media screen and (max-width: 600px) {
+    footer p {
+      display: block;
+    }
+      footer p:after {
+        display: none;
+      }
   }
 
   footer a {
