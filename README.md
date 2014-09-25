@@ -1,3 +1,3 @@
 # ONA buzzword bingo, 2014-? #
 
-Coming soon!
+Check out all its majesty: <http://bingo.journalism.ninja/>
