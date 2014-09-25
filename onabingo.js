@@ -83,6 +83,23 @@ BingoSpace = Backbone.Model.extend({
     }
 
     this.set( 'selected', !this.get( 'selected' ) );
+
+    // Send an analytics event.
+    if ( this.get( 'selected' ) ) {
+      window.ga && window.ga('send', {
+        'hitType': 'event',
+        'eventCategory': 'spaceChange',
+        'eventAction': 'check',
+        'eventLabel': this.get( 'word' )
+      });
+    } else {
+      window.ga && window.ga('send', {
+        'hitType': 'event',
+        'eventCategory': 'spaceChange',
+        'eventAction': 'uncheck',
+        'eventLabel': this.get( 'word' )
+      });
+    }
   }
 });
 
@@ -368,6 +385,12 @@ $( window.document ).ready(function() {
       config.wordList );
     card.reset( words );
     $winDialog.removeClass( winClass );
+
+    window.ga && window.ga('send', {
+      'hitType': 'event',
+      'eventCategory': 'newCard',
+      'eventAction': 'newCard'
+    });
   }
 
   function openWinDialog() {
@@ -393,6 +416,12 @@ $( window.document ).ready(function() {
   card.on( 'win', function( winningWords ) {
     openWinDialog();
     $winningWords.val( winningWords.join( ', ' ) );
+
+    window.ga && window.ga('send', {
+      'hitType': 'event',
+      'eventCategory': 'gameEnd',
+      'eventAction': 'win'
+    });
   });
 
   $( '.bingo-tweet' ).on( 'click', function( event ) {
