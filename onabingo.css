@@ -1,12 +1,12 @@
 body {
-  font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 100%;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #a5ddff;
+  background-color: #5f67a5;
   padding: 1em;
 }
   .brand {
@@ -65,25 +65,26 @@ header {
   }
   .bingo-space:hover {
     background-color: #bbb;
-    color: #f47e3c;
+    color: #5f67a5;
   }
   .bingo-space.selected {
     background-color: #eee;
-    color: #f47e3c;
+    color: #5f67a5;
   }
 
 .bingo-reset,
 .bingo-tweet {
-  background-color: #277ca3;
+  background-color: #ee5383;
   border: 0px none;
   color: #fff;
   cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.6em;
+  letter-spacing: 1px;
   margin-top: 1em;
-  opacity: 0.5;
-  padding: 10px 1%;
+  padding: 10px;
   text-align: center;
+  text-transform: uppercase;
 }
   .bingo-reset:hover,
   .bingo-tweet:hover {
@@ -98,7 +99,7 @@ header {
 }
 
 .bingo-win {
-  background-color: #d4aadc;
+  background-color: #fff;
   border-radius: 1em;
   border: 1px solid rgba(116, 116, 116, 0.2);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
@@ -150,13 +151,13 @@ header {
     }
 
 footer {
-  background-color: #2f3033;
+  background-color: #322343;
   line-height: 2;
   padding: 1em;
   text-align: right;
 }
   footer p {
-    color: #ccc;
+    color: #fff;
     display: inline;
     font-size: 0.75em;
   }
@@ -179,9 +180,7 @@ footer {
   }
 
   footer a {
-    background-color: #36a0e0;
-    color: #fff;
-    padding: 2px 5px;
+    color: #ee5383;
     text-decoration: none;
   }
     footer a:hover {
