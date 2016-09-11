@@ -427,7 +427,7 @@ $( window.document ).ready(function() {
       ('http://twitter.com/share?text=' +
       encodeURIComponent(
         'Bingo! (' + $winningWords.val() + ') ' + session +
-        '#ONA14 #ONAbingo' ) +
+        '#ONA16 #ONAbingo' ) +
       '&url=' + encodeURIComponent( window.location.href )),
       'sharer', 'toolbar=0,status=0,width=626,height=436'
     );
