@@ -1,16 +1,17 @@
 body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 100%;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #5f67a5;
+  background-color: #f4f3e9;
+  border-bottom: 3px solid #b33062;
   padding: 1em;
 }
   .brand {
-    color: #fff;
+    color: #11142d;
     font-size: 2em;
     margin: 0;
   }
@@ -43,7 +44,8 @@ header {
     }
 
 .bingo-space {
-  background-color: #ddd;
+  background-color: #c5e8e3;
+  color: #11142d;
   cursor: pointer;
   font-size: 1em;
   padding: 1em;
@@ -64,21 +66,21 @@ header {
     }
   }
   .bingo-space:hover {
-    background-color: #bbb;
-    color: #5f67a5;
+    background-color: #00a39b;
+    color: #11142d;
   }
   .bingo-space.selected {
-    background-color: #eee;
-    color: #5f67a5;
+    background-color: #00a39b;
+    color: #11142d;
   }
 
 .bingo-reset,
 .bingo-tweet {
-  background-color: #ee5383;
+  background-color: #c5e8e3;
   border: 0px none;
-  color: #fff;
+  color: #11142d;
   cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 0.6em;
   letter-spacing: 1px;
   margin-top: 1em;
