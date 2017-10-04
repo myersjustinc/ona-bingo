@@ -360,16 +360,65 @@ BingoCardView = Backbone.View.extend({
 });
 
 /*****************************************************************************
+  * FEATURE DETECTION: localStorage
+  ****************************************************************************/
+
+function storageAvailable( type ) {
+  try {
+    var storage = window[ type ],
+      x = '__storage_test__';
+    storage.setItem( x, x );
+    storage.removeItem( x );
+    return true;
+  }
+  catch( e ) {
+    return e instanceof DOMException && (
+      // everything except Firefox
+      e.code === 22 ||
+      // Firefox
+      e.code === 1014 ||
+      // test name field too, because code might not be present
+      // everything except Firefox
+      e.name === 'QuotaExceededError' ||
+      // Firefox
+      e.name === 'NS_ERROR_DOM_QUOTA_REACHED'
+    ) &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage.length !== 0;
+  }
+}
+
+/*****************************************************************************
   * INITIALIZATION
   ****************************************************************************/
 
 $( window.document ).ready(function() {
   var card,
     cardView,
+    storage,
+    storageKey = 'serializedONABingoCard',
     winClass = 'bingo-win--won',
     $winDialog = $( '.bingo-win' ),
     $winningWords = $( '.bingo-winning-words' ),
     words;
+
+  if ( storageAvailable( 'localStorage' ) ) {
+    storage = window.localStorage;
+  }
+
+  function saveCard() {
+    var newState,
+      words;
+
+    if ( storage == null ) {
+      return;
+    }
+
+    words = card.toJSON();
+    newState = JSON.stringify( words );
+
+    storage.setItem( storageKey, newState );
+  }
 
   function newCard() {
     words = getWords(
@@ -385,6 +434,32 @@ $( window.document ).ready(function() {
     });
   }
 
+  function loadCard() {
+    var pastState,
+      words;
+
+    if ( storage == null ) {
+      newCard();
+      return;
+    }
+
+    pastState = storage.getItem( storageKey );
+    if ( pastState == null ) {
+      newCard();
+      return;
+    }
+
+    words = JSON.parse( pastState );
+    card.reset( words );
+    $winDialog.removeClass( winClass );
+
+    window.ga && window.ga('send', {
+      'hitType': 'event',
+      'eventCategory': 'loadCard',
+      'eventAction': 'loadCard'
+    });
+  }
+
   function openWinDialog() {
     $winDialog.addClass( winClass );
   }
@@ -396,7 +471,9 @@ $( window.document ).ready(function() {
     cardHeight: config.cardHeight,
     cardWidth: config.cardWidth
   });
-  newCard();
+  card.on( 'reset', saveCard );
+  card.on( 'change', saveCard );
+  loadCard();
 
   cardView = new BingoCardView({
     collection: card,
