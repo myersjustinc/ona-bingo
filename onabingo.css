@@ -152,6 +152,14 @@ header {
       margin-right: auto;
     }
 
+article {
+  text-align: left;
+}
+  .dateline {
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
 footer {
   background-color: #322343;
   line-height: 2;
