@@ -396,7 +396,7 @@ $( window.document ).ready(function() {
   var card,
     cardView,
     storage,
-    storageKey = 'serializedONABingoCard',
+    storageKey = 'serializedONABingoCard2018',
     winClass = 'bingo-win--won',
     $winDialog = $( '.bingo-win' ),
     $winningWords = $( '.bingo-winning-words' ),
