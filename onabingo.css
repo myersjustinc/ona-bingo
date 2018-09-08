@@ -1,13 +1,13 @@
 body {
-  font-family: "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 100%;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #f4f3e9;
-  border-bottom: 3px solid #b33062;
+  background-color: #fff;
+  border-bottom: 3px solid #333;
   padding: 1em;
 }
   .brand {
@@ -44,13 +44,13 @@ header {
     }
 
 .bingo-space {
-  background-color: #c5e8e3;
-  color: #11142d;
+  background-color: #eee;
+  color: #333;
   cursor: pointer;
   font-size: 1em;
   padding: 1em;
   text-align: center;
-  transition: font-size 0.5s, padding 0.5s;
+  transition: background-color 0.5s, color 0.5s, font-size 0.5s, padding 0.5s;
   width: 20%;
 }
   @media screen and (max-width: 600px) {
@@ -66,30 +66,32 @@ header {
     }
   }
   .bingo-space:hover {
-    background-color: #00a39b;
-    color: #11142d;
+    background-color: #e05641;
+    color: #fff;
   }
   .bingo-space.selected {
-    background-color: #00a39b;
-    color: #11142d;
+    background-color: #e05641;
+    color: #fff;
   }
 
 .bingo-reset,
 .bingo-tweet {
-  background-color: #c5e8e3;
+  background-color: #e05641;
   border: 0px none;
-  color: #11142d;
+  color: #fff;
   cursor: pointer;
-  font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 0.6em;
   letter-spacing: 1px;
   margin-top: 1em;
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
+  transition: background-color 0.5s;
 }
   .bingo-reset:hover,
   .bingo-tweet:hover {
+    background-color: #74756b;
     opacity: 1;
   }
 
@@ -161,7 +163,7 @@ article {
   }
 
 footer {
-  background-color: #322343;
+  background-color: #3b3b35;
   line-height: 2;
   padding: 1em;
   text-align: right;
@@ -190,10 +192,9 @@ footer {
   }
 
   footer a {
-    color: #ee5383;
+    color: #e05641;
     text-decoration: none;
   }
     footer a:hover {
-      background: #4886ac;
-      color: #bbb;
+      color: #f0aba0;
     }
